@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-from math import factorial
 ''' Techincal Interview: Pascal's Triangle'''
+from math import factorial
 
 
 def pascal_triangle(n):
