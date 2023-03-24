@@ -1,9 +1,12 @@
 #!/usr/bin/python3
 ''' Techincal Interview: Pascal's Triangle'''
+
+
 from math import factorial
 
 
 def pascal_triangle(n):
+
     '''
         pascal_triangle - returns a list of lists of integers
         representing the Pascal's triangle of n
