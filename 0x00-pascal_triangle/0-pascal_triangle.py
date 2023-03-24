@@ -2,7 +2,7 @@
 ''' Techincal Interview: Pascal's Triangle'''
 
 
-from math import factorial
+# from math import factorial
 
 
 def pascal_triangle(n):
@@ -22,10 +22,11 @@ def pascal_triangle(n):
             for j in range(i + 1):
                 # nCr of each row and store in a list ie. n!/(n-r)!r!.
                 # In the case i!//(i - j)!*j!
-                value = factorial(i)//(factorial(j)*factorial(i-j))
+                # value = factorial(i)//(factorial(j)*factorial(i-j))
                 iArray.append(value)
             oArray.append(iArray)
             iArray = []
         return oArray
     except Exception:
         pass
+print(pascal_triangle(5))
