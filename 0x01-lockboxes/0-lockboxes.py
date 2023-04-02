@@ -27,4 +27,6 @@ def canUnlockAll(boxes):
                 keys.add(i)
                 empty_status -= 1
                 break
+    if (len_of_box < len(keys)):
+        return (!(len(keys) == len_of_box))
     return len(keys) == len_of_box
