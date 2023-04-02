@@ -11,10 +11,20 @@ def canUnlockAll(boxes):
 
     len_of_box = len(boxes)
     keys = set(boxes[0])
+    empty = False
+    empty_status = 0
 
     for box in boxes:
-        if box == []:
-            keys.add(99)
+        if box == [] or len(box) == 0:
+            empty = True
+            empty_status += 1
         for i in box:
             keys.add(i)
+
+    for i in range(100):
+        if (empty or empty_status != 0):
+            if (i not in keys):
+                keys.add(i)
+                empty_status -= 1
+                break
     return len(keys) == len_of_box
