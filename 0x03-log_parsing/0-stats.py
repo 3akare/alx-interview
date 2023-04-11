@@ -1,13 +1,20 @@
 #!/usr/bin/python3
-"""Reads from standard input and computes metrics.
+"""
+Reads from standard input and computes metrics.
 After every ten lines or the input of a keyboard interruption (CTRL + C),
 prints the following statistics:
     - Total file size up to that point.
     - Count of read status codes up to that point.
 """
 
+
+import sys
+
+
 if __name__ == '__main__':
-    import sys
+    '''
+    main function
+    '''
 
     o_put = '''File size: {}'''
     t_size = 0
@@ -25,7 +32,7 @@ if __name__ == '__main__':
     try:
         for ln in sys.stdin:
             if (num == 10):
-                print(o_put.format(t_size))
+                print(o_put.format(t_size, flush=True))
                 for k, v in s_code.items():
                     if v != 0:
                         print(f'{k}: {v}')
