@@ -7,10 +7,6 @@ prints the following statistics:
     - Count of read status codes up to that point.
 """
 
-
-import sys
-
-
 if __name__ == '__main__':
     '''
     main function
@@ -30,7 +26,11 @@ if __name__ == '__main__':
         '500': 0
         }
     try:
-        for ln in sys.stdin:
+        while True:
+            ln = input()
+            if not ln:
+                break
+
             if (num == 10):
                 print(o_put.format(t_size, flush=True))
                 for k, v in s_code.items():
