@@ -1,20 +1,27 @@
 #!/usr/bin/python3
 """
 Reads from standard input and computes metrics.
-After every ten lines or the input of a keyboard interruption (CTRL + C),
-prints the following statistics:
-    - Total file size up to that point.
-    - Count of read status codes up to that point.
 """
 
-if __name__ == '__main__':
+
+def print_log(s_code, t_size, o_put):
     '''
-    main function
+    print statictics
+    '''
+
+    print(o_put.format(t_size))
+    for k, v in s_code.items():
+        if v != 0:
+            print(f'{k}: {v}')
+
+
+def run():
+    '''
+    Starts the log server
     '''
 
     o_put = '''File size: {}'''
-    t_size = 0
-    num = 0
+    t_size, num = 0, 0
     s_code = {
         '200': 0,
         '301': 0,
@@ -25,38 +32,28 @@ if __name__ == '__main__':
         '405': 0,
         '500': 0
         }
+
     try:
         while True:
             ln = input()
             if not ln:
                 break
-
             if (num == 10):
-                print(o_put.format(t_size, flush=True))
-                for k, v in s_code.items():
-                    if v != 0:
-                        print(f'{k}: {v}')
+                print_log(s_code, t_size, o_put)
                 num = 1
             else:
                 num += 1
-
-            ln = [ln.split()]
             try:
+                ln = [ln.split()]
                 t_size += int(ln[0][-1])
-            except (IndexError, ValueError):
-                pass
-
-            try:
                 s_code[ln[0][-2]] += 1
             except Exception:
                 pass
-        print(o_put.format(t_size))
-        for k, v in s_code.items():
-            if v != 0:
-                print(f'{k}: {v}')
 
+        print_log(s_code, t_size, o_put)
     except KeyboardInterrupt:
-        print(o_put.format(t_size))
-        for k, v in s_code.items():
-            if v != 0:
-                print(f'{k}: {v}')
+        print_log(s_code, t_size, o_put)
+
+
+if __name__ == '__main__':
+    run()
