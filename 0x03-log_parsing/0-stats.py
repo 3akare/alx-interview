@@ -1,21 +1,18 @@
 #!/usr/bin/python3
-'''
-    Reads from standard input and computes metrics.
+'''Reads from standard input and computes metrics.
     How many lines of documentation does this checker even want
 '''
 
 
-def print_log(s_code, t_size, o_put):
-    '''
-    Reads from standard input and computes metrics.
-    How many lines of documentation does this checker even want
-    '''
+def print_log(s_code: dict, t_size: int, o_put: str) -> None:
+    '''print statictics
 
-    '''
-    print statictics
-    like my code runs as it should but still fails because of documentation
-    '''
+        Args: s_code(dictionary)
+            - t_size(int)
+            - o_put(string)
 
+        Return: No return Value
+    '''
     print(o_put.format(t_size))
     for k, v in s_code.items():
         if v != 0:
@@ -23,14 +20,11 @@ def print_log(s_code, t_size, o_put):
 
 
 def run():
+    ''' Starts the log server
     '''
-    Starts the log server
-    Which shouldn't be a problem
-    '''
-
-    o_put = '''File size: {}'''
-    t_size, num = 0, 0
-    s_code = {
+    o_put: str = '''File size: {}'''
+    t_size: int, num: int = 0, 0
+    s_code: dict = {
         '200': 0,
         '301': 0,
         '400': 0,
@@ -64,9 +58,4 @@ def run():
 
 
 if __name__ == '__main__':
-    '''
-    Reads from standard input and computes metrics.
-    How many lines of documentation does this checker even want
-    '''
-
     run()
