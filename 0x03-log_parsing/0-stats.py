@@ -53,7 +53,7 @@ def run():
 
 
 if __name__ == '__main__':
-    ''''
+    '''
     Reads from standard input and computes metrics.
     How many lines of documentation does this checker even want
     '''
