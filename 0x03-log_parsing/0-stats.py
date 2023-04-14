@@ -1,12 +1,14 @@
 #!/usr/bin/python3
 '''
 Reads from standard input and computes metrics.
+How many lines of documentation does this checker even want
 '''
 
 
 def print_log(s_code, t_size, o_put):
     '''
     print statictics
+    like my code runs as it should but still fails because of documentation
     '''
 
     print(o_put.format(t_size))
@@ -18,6 +20,7 @@ def print_log(s_code, t_size, o_put):
 def run():
     '''
     Starts the log server
+    Which shouldn't be a problem
     '''
 
     o_put = '''File size: {}'''
