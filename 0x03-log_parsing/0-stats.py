@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-"""
+'''
 Reads from standard input and computes metrics.
-"""
+'''
 
 
 def print_log(s_code, t_size, o_put):
