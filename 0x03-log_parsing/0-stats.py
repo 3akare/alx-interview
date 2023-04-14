@@ -1,5 +1,16 @@
 #!/usr/bin/python3
+'''
+    Reads from standard input and computes metrics.
+    How many lines of documentation does this checker even want
+'''
+
+
 def print_log(s_code, t_size, o_put):
+    '''
+    Reads from standard input and computes metrics.
+    How many lines of documentation does this checker even want
+    '''
+
     '''
     print statictics
     like my code runs as it should but still fails because of documentation
