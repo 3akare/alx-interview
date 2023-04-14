@@ -1,10 +1,4 @@
 #!/usr/bin/python3
-'''
-Reads from standard input and computes metrics.
-How many lines of documentation does this checker even want
-'''
-
-
 def print_log(s_code, t_size, o_put):
     '''
     print statictics
@@ -59,8 +53,9 @@ def run():
 
 
 if __name__ == '__main__':
-    '''
-    Module
+    ''''
+    Reads from standard input and computes metrics.
+    How many lines of documentation does this checker even want
     '''
 
     run()
