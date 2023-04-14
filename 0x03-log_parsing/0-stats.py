@@ -6,9 +6,10 @@ prints the following statistics:
     - Count of read status codes up to that point.
 """
 
-if __name__ == '__main__':
-    import sys
 
+import sys
+
+if __name__ == '__main__':
     o_put = '''File size: {}'''
     t_size = 0
     num = 0
