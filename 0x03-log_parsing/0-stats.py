@@ -1,30 +1,30 @@
 #!/usr/bin/python3
-'''Reads from standard input and computes metrics.
-    How many lines of documentation does this checker even want
-'''
+"""
+    Reads from standard input and computes metrics.
+"""
 
 
-def print_log(s_code: dict, t_size: int, o_put: str) -> None:
-    '''print statictics
-
+def print_log(s_code, t_size, o_put):
+    """
+    print statictics
         Args: s_code(dictionary)
-            - t_size(int)
-            - o_put(string)
-
-        Return: No return Value
-    '''
+        - t_size(int)
+        - o_put(string)
+    Return: No return Value
+    """
     print(o_put.format(t_size))
     for k, v in s_code.items():
         if v != 0:
             print(f'{k}: {v}')
 
 
-def run():
-    ''' Starts the log server
-    '''
-    o_put: str = '''File size: {}'''
-    t_size: int, num: int = 0, 0
-    s_code: dict = {
+def logrun():
+    """
+    Starts the log server
+    """
+    o_put = '''File size: {}'''
+    t_size, num = 0, 0
+    s_code = {
         '200': 0,
         '301': 0,
         '400': 0,
@@ -58,4 +58,4 @@ def run():
 
 
 if __name__ == '__main__':
-    run()
+    logrun()
