@@ -27,15 +27,8 @@ if __name__ == "__main__":
             else:
                 idx += 1
             ln = [line.split()]
-            try:
-                t_size += int(ln[0][-1])
-            except (IndexError, ValueError):
-                pass
-
-            try:
-                status_c[ln[0][-2]] += 1
-            except Exception:
-                pass
+            t_size += int(ln[0][-1])
+            status_c[ln[0][-2]] += 1
         print(str_output.format(t_size))
         for k, v in status_c.items():
             if v != 0:
