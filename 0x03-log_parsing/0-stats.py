@@ -4,7 +4,8 @@ This script logs https requests
 """
 
 
-from sys import stdin
+import sys
+
 
 if __name__ == "__main__":
     str_output = 'File size: {}'
@@ -18,7 +19,7 @@ if __name__ == "__main__":
     }
 
     try:
-        for line in stdin:
+        for line in sys.stdin:
             if (idx == 10):
                 print(str_output.format(t_size))
                 for k, v in status_c.items():
