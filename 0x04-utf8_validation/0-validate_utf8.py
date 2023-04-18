@@ -22,11 +22,20 @@ def validUTF8(data):
             r'\xF4[\x80-\x8F][\x80-\xBF]{2}'
         ]
     for d in data:
+        status = False
         byte = chr(d).encode('utf-8').decode('utf-8')
         for r in regex:
             regex_obj = re.compile(r)
             if (regex_obj.match(byte)):
-                break
-            else:
-                return False
-    return True
+                status = True
+    return status
+
+
+data = [65]
+print(validUTF8(data))
+
+data = [80, 121, 116, 104, 111, 110, 32, 105, 115, 32, 99, 111, 111, 108, 33]
+print(validUTF8(data))
+
+data = [229, 65, 127, 256]
+print(validUTF8(data))
