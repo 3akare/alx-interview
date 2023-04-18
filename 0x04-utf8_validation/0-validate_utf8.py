@@ -11,21 +11,16 @@ def validUTF8(data):
     validUTF8 function
     '''
 
-    regex = [
-            r'[\x00-\x7F]',
-            r'[\xC2-\xDF][\x80-\xBF]',
-            r'[\xE0][\xA0-\xBF][\x80-\xBF]',
-            r'[\xE1-\xEC\xEE\xEF][\x80-\xBF]{2}',
-            r'\xED[\x80-\x9F][\x80-\xBF]',
-            r'\xF0[\x90-\xBF][\x80-\xBF]{2}',
-            r'\xF1-\xF3][\x80-\xBF]{3}',
-            r'\xF4[\x80-\x8F][\x80-\xBF]{2}'
-        ]
+    regex = re.compile(r'^[\x00-\x7F]|\
+    [\xC2-\xDF][\x80-\xBF]|\xE0[\xA0-\xBF][\x80-\xBF]|\
+    [\xE1-\xEC\xEE\xEF][\x80-\xBF]{2}|\xED[\x80-\x9F][\x80-\xBF]\
+    |\xF0[\x90-\xBF][\x80-\xBF]{2}|[\xF1-\xF3][\x80-\xBF]{3}|\xF4[\x80-\x8F]\
+    [\x80-\xBF]{2}$')
+    status = True
     for d in data:
-        status = False
         byte = chr(d).encode('utf-8').decode('utf-8')
-        for r in regex:
-            regex_obj = re.compile(r)
-            if (regex_obj.match(byte)):
-                status = True
+        if (regex.match(byte)):
+            pass
+        else:
+            status = False
     return status
