@@ -11,21 +11,24 @@ def validUTF8(data):
     validUTF8 function
     '''
 
-    # regex = re.compile(r'^[\x00-\x7F]|\
-    # [\xC2-\xDF][\x80-\xBF]|\xE0[\xA0-\xBF][\x80-\xBF]|\
-    # [\xE1-\xEC\xEE\xEF][\x80-\xBF]{2}|\xED[\x80-\x9F][\x80-\xBF]\
-    # |\xF0[\x90-\xBF][\x80-\xBF]{2}|[\xF1-\xF3][\x80-\xBF]{3}|\xF4[\x80-\x8F]\
-    # [\x80-\xBF]{2}$')
-    # status = True
-    # for d in data:
-    #     byte = chr(d).encode('utf-8').decode('utf-8')
-    #     if (regex.match(byte)):
-    #         pass
-    #     else:
-    #         status = False
-    # return status
-
-    for i in data:
-        if i >= 256:
+    index = 0
+    while index < len(data):
+        if data[index] > 0b11110000:
             return False
+        if data[index] & 0b10000000 == 0b00000000:
+            span = 1
+        elif data[index] & 0b11100000 == 0b11000000:
+            span = 2
+        elif data[index] & 0b11110000 == 0b11100000:
+            span = 3
+        elif data[index] & 0b11111000 == 0b11110000:
+            span = 4
+        else:
+            return False
+        if len(data) < index + span:
+            return False
+        for i in range(index + 1, index + span):
+            if data[i] & 0b11000000 != 0b10000000:
+                return False
+        index += span
     return True
