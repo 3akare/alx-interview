@@ -11,24 +11,30 @@ def validUTF8(data):
     validUTF8 function
     '''
 
-    index = 0
-    while index < len(data):
-        if data[index] > 0b11110000:
-            return False
-        if data[index] & 0b10000000 == 0b00000000:
-            span = 1
-        elif data[index] & 0b11100000 == 0b11000000:
-            span = 2
-        elif data[index] & 0b11110000 == 0b11100000:
-            span = 3
-        elif data[index] & 0b11111000 == 0b11110000:
-            span = 4
+    skip = 0
+    for d in data:
+        if skip > 0:
+            if (d & 0b11000000) != 0b10000000:
+                return False
+            skip -= 1
+            continue
+        if (d & 0b10000000) == 0:
+            continue
+        elif (d & 0b11100000) == 0b11000000:
+            skip = 1
+        elif (d & 0b11110000) == 0b11100000:
+            skip = 2
+        elif (d & 0b11111000) == 0b11110000:
+            skip = 3
         else:
             return False
-        if len(data) < index + span:
-            return False
-        for i in range(index + 1, index + span):
-            if data[i] & 0b11000000 != 0b10000000:
-                return False
-        index += span
-    return True
+    return skip == 0
+
+data = [65]
+print(validUTF8(data))
+
+data = [80, 121, 116, 104, 111, 110, 32, 105, 115, 32, 99, 111, 111, 108, 33]
+print(validUTF8(data))
+
+data = [229, 65, 127, 256]
+print(validUTF8(data))
