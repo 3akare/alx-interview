@@ -10,10 +10,11 @@ def print_log(str_output, obj, size):
     obj: dictionary
     size: int
     """
+    lint = sorted([int(x) for x in obj.keys()])
     print(str_output.format(size))
-    for k, v in obj.items():
-        if v != 0:
-            print("{}: {}".format(k, v))
+    for k in lint:
+        if obj[str(k)] != 0:
+            print("{}: {}".format(k, obj[str(k)]))
 
 
 def run():
@@ -23,10 +24,14 @@ def run():
     str_output = 'File size: {}'
     t_size, idx = 0, 0
     status_c = {
-            '200': 0, '301': 0,
-            '400': 0, '401': 0,
-            '403': 0, '404': 0,
-            '405': 0, '500': 0
+            '200': 0,
+            '301': 0,
+            '400': 0,
+            '401': 0,
+            '403': 0,
+            '404': 0,
+            '405': 0,
+            '500': 0
     }
 
     try:
