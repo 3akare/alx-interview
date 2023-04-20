@@ -1,25 +1,22 @@
 #!/usr/bin/python3
-"""
-This script logs https requests
-"""
+"""Logs HTTPS requests"""
 
 
-import sys
+from sys import stdin
 
 
 if __name__ == "__main__":
     str_output = 'File size: {}'
-    t_size = 0
-    idx = 0
+    t_size, idx = 0, 0
     status_c = {
-        '200': 0, '301': 0,
-        '400': 0, '401': 0,
-        '403': 0, '404': 0,
-        '405': 0, '500': 0
+            '200': 0, '301': 0,
+            '400': 0, '401': 0,
+            '403': 0, '404': 0,
+            '405': 0, '500': 0
     }
 
     try:
-        for line in sys.stdin:
+        for line in stdin:
             if (idx == 10):
                 print(str_output.format(t_size))
                 for k, v in status_c.items():
