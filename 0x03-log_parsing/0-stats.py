@@ -1,11 +1,25 @@
 #!/usr/bin/python3
 """Logs HTTPS requests"""
-
-
 from sys import stdin
 
 
-if __name__ == "__main__":
+def print_log(str_output, obj, size):
+    """
+    print_log - prints out http log
+    str_output: str
+    obj: dictionary
+    size: int
+    """
+    print(str_output.format(size))
+    for k, v in obj.items():
+        if v != 0:
+            print("{}: {}".format(k, v))
+
+
+def run():
+    """
+    Heart of the code
+    """
     str_output = 'File size: {}'
     t_size, idx = 0, 0
     status_c = {
@@ -18,22 +32,20 @@ if __name__ == "__main__":
     try:
         for line in stdin:
             if (idx == 10):
-                print(str_output.format(t_size))
-                for k, v in status_c.items():
-                    if v != 0:
-                        print(f'{k}: {v}')
+                print_log(str_output, status_c, t_size)
                 idx = 1
             else:
                 idx += 1
             ln = [line.split()]
             t_size += int(ln[0][-1])
             status_c[ln[0][-2]] += 1
-        print(str_output.format(t_size))
-        for k, v in status_c.items():
-            if v != 0:
-                print(f'{k}: {v}')
+        print_log(str_output, status_c, t_size)
     except KeyboardInterrupt:
-        print(str_output.format(t_size))
-        for k, v in status_c.items():
-            if v != 0:
-                print(f'{k}: {v}')
+        print_log(str_output, status_c, t_size)
+
+
+if __name__ == '__main__':
+    """
+    I have spent so much time on this HTTP log script
+    """
+    run()
