@@ -37,11 +37,8 @@ def run():
             else:
                 idx += 1
             ln = [line.split()]
-            try:
-                t_size += int(ln[0][-1])
+            t_size += int(ln[0][-1])
             status_c[ln[0][-2]] += 1
-            except Exception:
-                pass
         print_log(str_output, status_c, t_size)
     except KeyboardInterrupt:
         print_log(str_output, status_c, t_size)
